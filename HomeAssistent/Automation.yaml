@@ -1,0 +1,11 @@
+alias: "[Tank Level] - Low Tank Level Notification"
+description: "Sends a notification when the tank level drops below 20%"
+trigger:
+  - platform: mqtt
+    topic: tank/level
+    value_template: "{{ value|float < 20 }}"
+action:
+  - service: notify.notify
+    data:
+      message: "The tank level has dropped below 20%!"
+mode: single
